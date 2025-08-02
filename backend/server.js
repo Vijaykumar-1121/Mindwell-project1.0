@@ -27,10 +27,10 @@ app.use(express.json());
 // --- API Routes ---
 app.use('/api/auth', require('./src/api/auth'));
 app.use('/api/journal', require('./src/api/journal'));
-app.use('/api/mood', require('./src/api/mood'));
+//app.use('/api/mood', require('./src/api/mood'));
 app.use('/api/resources', require('./src/api/resources'));
-app.use('/api/appointments', require('./src/api/appointments'));
-app.use('/api/users', require('./src/api/users'));
+//app.use('/api/appointments', require('./src/api/appointments'));
+//app.use('/api/users', require('./src/api/users'));
 app.use('/api/counselors', require('./src/api/counselors'));
 
 
@@ -38,3 +38,4 @@ const PORT = process.env.PORT || 5000;
 
 // Start the server
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
