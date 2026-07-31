@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker - MindWell</title>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        .mood-option.selected {
+            transform: scale(1.03);
+            box-shadow: 0 4px 14px rgb(0 0 0 / 0.06);
+        }
+    </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-800 font-['Nunito',sans-serif]">
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Top Navigation -->
+        <div id="global-header"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto p-6 flex flex-col items-center">
+            
+            <div class="w-full max-w-2xl mt-4">
+                <!-- Mood Tracker Card -->
+                <div id="mood-tracker-card" class="bg-white p-10 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-[#F0EBE1] transition-colors duration-500">
+                    
+                    <div id="mood-form">
+                        <div class="flex justify-between items-center mb-4">
+                            <div></div> <!-- Spacer -->
+                            <div id="streak-badge" class="hidden items-center gap-1 bg-[#EAF0CE] text-[#556B2F] px-4 py-1.5 rounded-full font-bold shadow-sm cursor-default">
+                                <span class="text-lg">🌱</span> <span id="streak-count">0</span> Day Streak
+                            </div>
+                        </div>
+                        <h1 class="text-4xl font-bold text-stone-800 text-center mb-3 tracking-tight font-['Lora',serif]">How are you feeling today?</h1>
+                        <p class="text-center text-stone-500 mb-10 text-lg">Select a mood that best represents how you feel right now.</p>
+                        
+                        <div id="mood-picker" class="grid grid-cols-5 gap-2 sm:gap-3 mb-10"></div>
+
+                        <div id="mood-details-section" class="hidden opacity-0 transition-opacity duration-500">
+                            <div class="mb-6">
+                                <label class="block text-stone-600 font-bold mb-3">What's influencing your mood? <span class="text-stone-400 font-normal italic">(optional)</span></label>
+                                <div id="mood-tags" class="flex flex-wrap gap-2 mb-4">
+                                    <button class="mood-tag bg-[#F9F6F0] border border-[#E8E2D2] text-stone-600 hover:bg-[#F0EBE1] px-5 py-2.5 rounded-full text-sm font-bold transition-all">Exams</button>
+                                    <button class="mood-tag bg-[#F9F6F0] border border-[#E8E2D2] text-stone-600 hover:bg-[#F0EBE1] px-5 py-2.5 rounded-full text-sm font-bold transition-all">Social</button>
+                                    <button class="mood-tag bg-[#F9F6F0] border border-[#E8E2D2] text-stone-600 hover:bg-[#F0EBE1] px-5 py-2.5 rounded-full text-sm font-bold transition-all">Sleep</button>
+                                    <button class="mood-tag bg-[#F9F6F0] border border-[#E8E2D2] text-stone-600 hover:bg-[#F0EBE1] px-5 py-2.5 rounded-full text-sm font-bold transition-all">Exercise</button>
+                                    <button class="mood-tag bg-[#F9F6F0] border border-[#E8E2D2] text-stone-600 hover:bg-[#F0EBE1] px-5 py-2.5 rounded-full text-sm font-bold transition-all">Work</button>
+                                </div>
+                                <form id="custom-tag-form" class="flex gap-2">
+                                    <input type="text" id="custom-tag-input" class="flex-grow p-3 bg-[#F9F6F0] border border-[#E8E2D2] rounded-xl focus:outline-none focus:border-[#789c8a] focus:bg-white transition" placeholder="Add a custom tag...">
+                                    <button type="submit" class="bg-stone-700 text-white font-bold px-5 py-3 rounded-xl hover:bg-stone-800 transition">Add</button>
+                                </form>
+                            </div>
+                            <div class="mb-8">
+                                <div class="flex justify-between items-end mb-2">
+                                    <label for="mood-notes" class="block text-stone-600 font-bold">Add a note <span class="text-stone-400 font-normal italic">(optional)</span></label>
+                                    <button id="ai-inspire-btn" class="flex items-center gap-1 text-sm font-bold text-orange-500 hover:text-orange-600 transition-colors focus:outline-none">
+                                        <span>✨</span> Inspire me
+                                    </button>
+                                </div>
+                                <textarea id="mood-notes" rows="3" class="w-full p-4 bg-[#F9F6F0] border border-[#E8E2D2] rounded-xl focus:outline-none focus:border-[#789c8a] focus:bg-white transition resize-none" placeholder="What's on your mind?"></textarea>
+                            </div>
+                        </div>
+
+                        <button id="log-mood-btn" class="w-full py-4 bg-orange-500 text-white font-bold text-lg rounded-xl shadow-sm hover:bg-orange-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Log Mood
+                        </button>
+                    </div>
+
+                    <div id="confirmation-message" class="hidden text-center py-8 opacity-0 transition-opacity duration-500">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#EAF0CE] text-[#556B2F] mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-stone-800 mb-3 font-['Lora',serif]">Thank you for checking in.</h2>
+                        <p class="text-stone-500 mb-8 text-lg">Your mood has been securely logged. Remember, acknowledging your feelings is a sign of strength.</p>
+                        <button id="log-another-btn" class="text-orange-600 bg-orange-50 hover:bg-orange-100 px-6 py-3 rounded-full font-bold transition-colors">Log Another Mood</button>
+                    </div>
+                </div>
+
+                <!-- Mood Heatmap Section -->
+                <div class="mt-12 mb-8 hidden" id="heatmap-section">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-2 font-['Lora',serif]">
+                        <svg class="w-6 h-6 text-[#789c8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Last 30 Days
+                    </h2>
+                    <div class="bg-white p-8 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-[#F0EBE1] flex flex-col items-center">
+                        <div id="heatmap-grid" class="flex gap-1.5 flex-wrap justify-center max-w-full">
+                            <!-- JS populates squares here -->
+                        </div>
+                        <div class="flex items-center gap-4 mt-6 text-xs font-bold text-stone-400 uppercase tracking-wider">
+                            <span>Less</span>
+                            <div class="flex gap-1.5">
+                                <div class="w-3.5 h-3.5 rounded-sm bg-[#F0EBE1]"></div>
+                                <div class="w-3.5 h-3.5 rounded-sm bg-orange-400"></div>
+                                <div class="w-3.5 h-3.5 rounded-sm bg-[#D4CBB3]"></div>
+                                <div class="w-3.5 h-3.5 rounded-sm bg-[#789c8a]"></div>
+                            </div>
+                            <span>More</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Moods Section -->
+                <div class="mb-8 mt-12">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-2 font-['Lora',serif]">
+                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Recent Activity
+                    </h2>
+                    <div id="mood-history-list" class="space-y-4">
+                        <!-- Populated by JS -->
+                        <div class="bg-white p-6 rounded-2xl flex items-center justify-center border border-[#F0EBE1]">
+                            <div class="w-6 h-6 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/mood-icons.js"></script>
+    <script src="../js/mood-tracker.js"></script>
+</body>
+</html>
+

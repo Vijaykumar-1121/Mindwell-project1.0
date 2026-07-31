@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation - MindWell</title>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes breathe {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0.8); }
+        }
+        .breathing-circle.animate {
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        /* GIF Background Styling */
+        #background-gif {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the GIF covers the entire screen */
+            z-index: -2;
+            filter: brightness(0.6); /* Dims the background to make text readable */
+        }
+
+        #background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Adds a dark overlay */
+            z-index: -1;
+        }
+
+    </style>
+</head>
+<body class="bg-slate-800">
+
+    <!-- GIF Background -->
+    <!-- You can replace the src with any GIF URL you want -->
+    <img id="background-gif" src="https://i.pinimg.com/originals/a1/27/92/a127928228314ff95f543a82641a2c3a.gif" alt="Calm nature background">
+    <div id="background-overlay"></div>
+
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Top Navigation -->
+        <div id="global-header"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+            <div class="text-center w-full max-w-md">
+                
+                <div class="mb-8 flex justify-center gap-2">
+                    <button id="sound-rain" class="sound-btn bg-white/20 hover:bg-white/40 text-white font-bold py-2 px-4 rounded-full transition border border-white/30 backdrop-blur-sm active-sound">🌧 Rain</button>
+                    <button id="sound-forest" class="sound-btn bg-white/10 hover:bg-white/40 text-white font-bold py-2 px-4 rounded-full transition border border-white/30 backdrop-blur-sm">🌲 Forest</button>
+                    <button id="sound-ocean" class="sound-btn bg-white/10 hover:bg-white/40 text-white font-bold py-2 px-4 rounded-full transition border border-white/30 backdrop-blur-sm">🌊 Ocean</button>
+                </div>
+
+                <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto mb-8">
+                    <div class="absolute inset-0 bg-cyan-200 rounded-full opacity-20"></div>
+                    <div id="breathing-circle" class="breathing-circle absolute inset-2 bg-cyan-400 rounded-full transition-transform duration-4000 ease-in-out"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p id="breathing-text" class="text-3xl font-bold text-white shadow-sm">Breathe In...</p>
+                    </div>
+                </div>
+                
+                <button id="start-stop-btn" class="bg-orange-500 text-white font-bold px-10 py-4 rounded-full hover:bg-orange-600 transition text-xl shadow-lg hover:-translate-y-1">
+                    Start Session
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <audio id="peaceful-music" loop>
+        <source id="audio-source" src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_248c82eb5c.mp3?filename=gentle-rain-for-relaxation-and-sleep-337279.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="../js/meditation.js"></script>
+</body>
+</html>
+

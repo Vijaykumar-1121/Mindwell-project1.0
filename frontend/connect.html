@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - MindWell</title>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-down': 'fade-in-down 0.8s ease-out',
+                        'fade-in-up': 'fade-in-up 0.8s ease-out 0.2s both',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'fade-in-down': { '0%': { opacity: '0', transform: 'translateY(-20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        'fade-in-up': { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        'float': { '0%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' }, '100%': { transform: 'translateY(0px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-50 text-stone-800">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-2xl font-bold text-amber-600">
+                    <img src="/assets/icons/logo.svg" alt="MindWell Logo" class="h-8">
+                    MindWell
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="about.html" class="text-stone-600 hover:text-amber-600 transition">About Us</a>
+                    <a href="connect.html" class="text-amber-600 font-bold transition">Connect</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="login.html" class="px-4 py-2 text-amber-600 font-semibold rounded-md hover:bg-amber-50 transition">Login</a>
+                    <a href="signup.html" class="px-4 py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition">Sign Up</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-stone-800 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </nav>
+            <div id="mobile-menu" class="hidden md:hidden">
+                <a href="about.html" class="block py-2 px-6 text-sm text-stone-600 hover:bg-amber-50">About Us</a>
+                <a href="connect.html" class="block py-2 px-6 text-sm text-amber-600 font-bold hover:bg-amber-50">Connect</a>
+                <a href="login.html" class="block py-2 px-6 text-sm text-stone-600 hover:bg-amber-50">Login</a>
+                <a href="signup.html" class="block py-2 px-6 text-sm text-stone-600 hover:bg-amber-50">Sign Up</a>
+            </div>
+        </header>
+
+        <main class="flex-grow flex flex-col bg-stone-50">
+            
+            <!-- Hero Section -->
+            <section class="py-8 md:py-12 bg-stone-100 text-center border-b border-stone-200 shadow-inner">
+                <div class="container mx-auto px-6 max-w-4xl animate-fade-in-up">
+                    <h1 class="text-3xl md:text-4xl font-bold text-stone-800 mb-4">Connect with Support</h1>
+                    <p class="text-base text-stone-600 max-w-2xl mx-auto mb-4">
+                        Find the right support for you. Our platform offers both professional counseling sessions and an instant AI assistant to help you navigate your thoughts and feelings.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Counselor Grid Section -->
+            <section class="py-8 md:py-12 bg-white">
+                <div class="container mx-auto px-6 max-w-6xl">
+                    <div class="text-center mb-8 animate-fade-in-up">
+                        <h2 class="text-2xl font-bold text-stone-800 mb-2">Meet Our Specialized Counselors</h2>
+                        <p class="text-base text-stone-600">Licensed specialists dedicated to supporting student well-being, stress, and growth.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Counselor 1: Dr. Vijaykumar -->
+                        <div class="bg-stone-50 p-6 rounded-xl shadow-lg flex flex-col text-center transition-transform transform hover:-translate-y-2 border border-stone-100">
+                            <div class="relative w-32 h-32 mx-auto mb-4">
+                                <img src="assets/images/dr_vijaykumar.png" alt="Dr. Vijaykumar" class="w-full h-full rounded-full object-cover shadow-md">
+                                <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" title="Available Today"></div>
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-800 mb-1">Dr. Vijaykumar</h4>
+                            <p class="text-sm font-semibold text-amber-600 mb-4">Licensed Professional Counselor</p>
+                            
+                            <p class="text-stone-600 text-sm flex-grow mb-4">
+                                Specializes in anxiety, stress management, and academic pressure. 10+ years experience.
+                            </p>
+                            
+                            <div class="flex items-center justify-center gap-1 text-sm font-bold text-stone-700 mb-6">
+                                <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                4.9 (120+ Sessions)
+                            </div>
+
+                            <a href="login.html" class="w-full inline-block bg-orange-500 text-white font-semibold py-2 rounded-md hover:bg-orange-600 transition">Login to Book</a>
+                        </div>
+
+                        <!-- Counselor 2: Dr. EswarSai -->
+                        <div class="bg-stone-50 p-6 rounded-xl shadow-lg flex flex-col text-center transition-transform transform hover:-translate-y-2 border border-stone-100">
+                            <div class="relative w-32 h-32 mx-auto mb-4">
+                                <img src="assets/images/dr_eswarsai.png" alt="Dr. EswarSai" class="w-full h-full rounded-full object-cover shadow-md">
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-800 mb-1">Dr. EswarSai</h4>
+                            <p class="text-sm font-semibold text-amber-600 mb-4">Clinical Psychologist</p>
+                            
+                            <p class="text-stone-600 text-sm flex-grow mb-4">
+                                Focuses on depression, relationship challenges, and building resilience. 8+ years experience.
+                            </p>
+                            
+                            <div class="flex items-center justify-center gap-1 text-sm font-bold text-stone-700 mb-6">
+                                <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                4.95 (95+ Sessions)
+                            </div>
+
+                            <a href="login.html" class="w-full inline-block bg-orange-500 text-white font-semibold py-2 rounded-md hover:bg-orange-600 transition">Login to Book</a>
+                        </div>
+
+                        <!-- Counselor 3: Dr. Gunatej -->
+                        <div class="bg-stone-50 p-6 rounded-xl shadow-lg flex flex-col text-center transition-transform transform hover:-translate-y-2 border border-stone-100">
+                            <div class="relative w-32 h-32 mx-auto mb-4">
+                                <img src="assets/images/dr_gunatej.png" alt="Dr. Gunatej" class="w-full h-full rounded-full object-cover shadow-md">
+                                <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" title="Available Today"></div>
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-800 mb-1">Dr. Gunatej</h4>
+                            <p class="text-sm font-semibold text-amber-600 mb-4">Mental Health Specialist</p>
+                            
+                            <p class="text-stone-600 text-sm flex-grow mb-4">
+                                Expertise in mindfulness, self-esteem, and navigating life transitions. 7+ years experience.
+                            </p>
+                            
+                            <div class="flex items-center justify-center gap-1 text-sm font-bold text-stone-700 mb-6">
+                                <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                4.88 (110+ Sessions)
+                            </div>
+
+                            <a href="login.html" class="w-full inline-block bg-orange-500 text-white font-semibold py-2 rounded-md hover:bg-orange-600 transition">Login to Book</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 24/7 AI Chat Section -->
+            <section class="py-8 md:py-12 bg-stone-100 border-t border-stone-200 shadow-inner">
+                <div class="container mx-auto px-6 max-w-4xl text-center animate-fade-in-up">
+                    <div class="bg-amber-100/70 p-6 md:p-8 rounded-2xl shadow-sm border border-amber-200">
+                        <h2 class="text-2xl font-bold text-stone-800 mb-2">Need to talk right now?</h2>
+                        <p class="text-base text-stone-700 mb-1">
+                            Our AI assistant is available 24/7 to listen and provide immediate support in a safe, anonymous space.
+                        </p>
+                        <p class="text-amber-700 font-bold mb-6">Feel free to express what you want 💬</p>
+                        <a href="login.html" class="inline-block bg-amber-600 text-white font-bold py-2.5 px-6 rounded-full hover:bg-amber-700 transition shadow-md">
+                            Login to Chat
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Standard Footer from index.html -->
+        <footer class="bg-white border-t border-stone-200 py-8 text-center text-sm text-stone-500">
+            <p>&copy; 2026 MindWell. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

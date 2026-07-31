@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard - MindWell</title>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-[#FAF8F5] text-stone-800 font-['Nunito',sans-serif]">
+
+    <div id="notification"></div>
+
+    <div class="min-h-screen flex flex-col relative overflow-hidden">
+        
+        <!-- Decorative blur blobs -->
+        <div class="fixed top-[-10%] right-[-5%] w-[40vw] h-[40vw] bg-amber-100 rounded-full blur-[100px] opacity-40 pointer-events-none z-0"></div>
+        <div class="fixed bottom-[-10%] left-[-5%] w-[30vw] h-[30vw] bg-orange-100 rounded-full blur-[100px] opacity-40 pointer-events-none z-0"></div>
+
+        <!-- Top Navigation -->
+        <div id="global-header"></div>
+
+        <main class="flex-grow container mx-auto px-6 py-8 relative z-10">
+            
+            <!-- Greeting -->
+            <div class="mb-10 text-center md:text-left">
+                <h2 id="dynamic-greeting" class="text-4xl font-bold text-stone-800 mb-3 font-['Lora',serif]">Welcome back, Sarah</h2>
+                <p class="text-stone-500 text-lg">Take a moment for yourself today.</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <a href="mood-tracker.html" class="group bg-white/60 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-white hover:shadow-md hover:bg-white/90 transition hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center mb-4 group-hover:bg-orange-500 transition-colors">
+                        <svg class="w-6 h-6 text-orange-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-stone-800 font-['Lora',serif] mb-2">Track Your Mood</h3>
+                    <p class="text-sm text-stone-500">How are you feeling today? Log your mood to see your progress.</p>
+                </a>
+                
+                <a href="journal.html" class="group bg-white/60 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-white hover:shadow-md hover:bg-white/90 transition hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-[#789c8a]/20 flex items-center justify-center mb-4 group-hover:bg-[#789c8a] transition-colors">
+                        <svg class="w-6 h-6 text-[#789c8a] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-stone-800 font-['Lora',serif] mb-2">Journal</h3>
+                    <p class="text-sm text-stone-500">Clear your mind and reflect on your thoughts in a safe space.</p>
+                </a>
+                
+                <div class="text-left w-full group bg-white/60 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-white hover:shadow-md transition relative flex flex-col justify-center items-center overflow-hidden min-h-[220px]">
+                    <style>
+                        /* Force the ElevenLabs widget to stay within this container instead of floating */
+                        #eleven-container elevenlabs-convai {
+                            position: static !important;
+                            inset: auto !important;
+                            transform: scale(1.2) !important;
+                            margin: 0 auto;
+                        }
+                    </style>
+                    <h3 class="font-bold text-xl text-stone-800 font-['Lora',serif] mb-1 z-0 pointer-events-none text-center">Talk to AI</h3>
+                    <p class="text-xs text-stone-400 text-center mb-5 italic pointer-events-none">Feel free to express what you want 💬</p>
+                    <div id="eleven-container" class="w-full flex justify-center items-center z-10">
+                        <elevenlabs-convai agent-id="agent_5201kyv9ybp6fz4sr467zew0k085"></elevenlabs-convai>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lower Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                
+                <!-- Mood Chart -->
+                <div class="lg:col-span-2 bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-white">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-stone-800 font-['Lora',serif]">Your Mood This Week</h3>
+                        <a href="mood-tracker.html" class="text-sm font-bold text-orange-500 hover:underline">View All</a>
+                    </div>
+                    <div class="h-64 relative w-full">
+                        <canvas id="moodHistoryChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Sidebar (Focus & Appointments) -->
+                <div class="space-y-6">
+                    
+                    <!-- Today's Focus -->
+                    <div class="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-white relative overflow-hidden text-center group">
+                        <div class="absolute top-[-10%] right-[-10%] w-24 h-24 bg-orange-100 rounded-full blur-[20px] opacity-40"></div>
+                        <h3 class="font-bold text-stone-400 uppercase tracking-widest text-xs mb-4">Today's Focus</h3>
+                        <p id="daily-quote" class="text-xl font-['Lora',serif] text-stone-700 italic group-hover:text-amber-600 transition-colors">
+                            "Progress, not perfection."
+                        </p>
+                    </div>
+
+                    <!-- Appointments Preview -->
+                    <div class="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-white">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-stone-800 font-['Lora',serif]">Upcoming</h3>
+                            <a href="appointments.html" class="text-sm font-bold text-orange-500 hover:underline">Manage</a>
+                        </div>
+                        <div id="appointment-list" class="space-y-4">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+    
+
+    <script src="../js/global.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+

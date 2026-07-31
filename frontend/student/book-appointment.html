@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Session - MindWell</title>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        #notification {
+            position: fixed; top: 20px; right: 20px;
+            padding: 1rem 1.5rem; border-radius: 1rem;
+            color: white; z-index: 1000;
+            opacity: 0; transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        #notification.show { opacity: 1; transform: translateY(0); }
+        #notification.success { background-color: #789c8a; } /* Sage Green */
+        #notification.error { background-color: #e8a95c; } /* Amber */
+    </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-800 font-['Nunito',sans-serif]">
+
+    <div id="notification"></div>
+
+    <div class="min-h-screen flex flex-col relative overflow-hidden">
+        
+        <!-- Decorative blur blobs -->
+        <div class="fixed top-[-10%] right-[-5%] w-[40vw] h-[40vw] bg-orange-100 rounded-full blur-[100px] opacity-40 pointer-events-none z-0"></div>
+        <div class="fixed bottom-[-10%] left-[-5%] w-[30vw] h-[30vw] bg-stone-200 rounded-full blur-[100px] opacity-40 pointer-events-none z-0"></div>
+
+        <!-- Top Navigation -->
+        <div id="global-header"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto p-6 md:p-8 relative z-10">
+            <div class="container mx-auto max-w-4xl">
+                
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-bold text-stone-800 mb-2 font-['Lora',serif]">Book a Session</h1>
+                    <p class="text-stone-500">Take the next step in your wellness journey.</p>
+                </div>
+
+                <div class="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-white">
+                    
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">1</span> 
+                            Select a Professional
+                        </h2>
+                        <div id="counselor-list" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <!-- Counselor options will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <div id="booking-flow" class="hidden mt-12 pt-8 border-t border-[#F0EBE1]">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div>
+                                <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">2</span> 
+                                    Select a Date
+                                </h2>
+                                <div id="calendar" class="p-6 bg-white rounded-2xl border border-[#F0EBE1] shadow-sm">
+                                    <div class="flex justify-between items-center mb-6">
+                                        <button id="prev-month" class="w-8 h-8 flex items-center justify-center rounded-full bg-stone-50 text-stone-500 hover:bg-orange-500 hover:text-white transition font-bold">&lt;</button>
+                                        <h3 id="month-year" class="font-bold text-lg text-stone-800"></h3>
+                                        <button id="next-month" class="w-8 h-8 flex items-center justify-center rounded-full bg-stone-50 text-stone-500 hover:bg-orange-500 hover:text-white transition font-bold">&gt;</button>
+                                    </div>
+                                    <div id="calendar-days" class="grid grid-cols-7 gap-2 text-center text-sm font-bold text-stone-600"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">3</span> 
+                                    Select a Time
+                                </h2>
+                                <div id="time-slots" class="space-y-3">
+                                    <div class="p-6 bg-white border border-[#F0EBE1] border-dashed rounded-2xl text-center text-stone-400 font-bold">
+                                        Please select a date to see available times.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="session-type-section" class="hidden mt-12 pt-8 border-t border-[#F0EBE1]">
+                            <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">4</span> 
+                                Session Type
+                            </h2>
+                            <div class="flex gap-4">
+                                <div class="flex-1">
+                                    <button class="session-type-option w-full p-5 border border-[#F0EBE1] bg-white rounded-2xl text-center font-bold text-stone-600 hover:border-orange-500 hover:bg-orange-50 transition shadow-sm" data-type="Request Virtual">
+                                        Request Virtual
+                                    </button>
+                                    <p class="text-[10px] text-center text-stone-400 mt-2">Doctor will verify and provide meeting link</p>
+                                </div>
+                                <div class="flex-1">
+                                    <button class="session-type-option w-full p-5 border border-[#F0EBE1] bg-white rounded-2xl text-center font-bold text-stone-600 hover:border-orange-500 hover:bg-orange-50 transition shadow-sm" data-type="In-Person">
+                                        In-Person
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="reason-section" class="hidden mt-12 pt-8 border-t border-[#F0EBE1]">
+                            <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">5</span> 
+                                Reason for Visit
+                            </h2>
+                            <textarea id="reason-for-visit" rows="3" class="w-full p-4 border border-[#F0EBE1] bg-white rounded-2xl focus:outline-none focus:border-orange-500 transition shadow-sm resize-none" placeholder="Briefly describe what you'd like to discuss (optional)..."></textarea>
+                            <button id="continue-to-confirm-btn" class="mt-4 px-6 py-3 bg-stone-200 text-stone-700 font-bold rounded-full hover:bg-stone-300 transition">Continue</button>
+                        </div>
+                        
+                        <div id="confirmation-section" class="hidden mt-12 pt-8 border-t border-[#F0EBE1]">
+                            <h2 class="text-2xl font-bold text-stone-800 mb-6 font-['Lora',serif] flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-sm">6</span> 
+                                Confirm Booking
+                            </h2>
+                            <div class="bg-gradient-to-r from-orange-50 to-[#FAF8F5] p-6 rounded-2xl border border-orange-100">
+                                <p id="selected-appointment-details" class="text-stone-700 font-bold text-lg"></p>
+                                <p id="selected-reason-display" class="text-stone-500 text-sm mt-2 italic hidden"></p>
+                            </div>
+                            <button id="confirm-booking-btn" class="w-full mt-8 py-4 bg-stone-800 text-white font-bold text-lg rounded-full hover:bg-stone-700 transition shadow-lg transform hover:-translate-y-0.5">
+                                Confirm & Schedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/appointments.js"></script>
+</body>
+</html>
+

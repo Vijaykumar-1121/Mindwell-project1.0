@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - MindWell</title>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        .breathe-circle { transition: all 4s ease-in-out; box-shadow: 0 0 0 rgba(120,156,138,0); }
+        .breathe-in { transform: scale(1.6); background-color: #789c8a; box-shadow: 0 0 40px rgba(120,156,138,0.6); }
+        .breathe-hold { transform: scale(1.6); background-color: #c4775c; box-shadow: 0 0 40px rgba(196,119,92,0.6); }
+        .breathe-out { transform: scale(1); background-color: #D4CBB3; box-shadow: 0 0 0 rgba(212,203,179,0); }
+        .fade-up-blur { animation: fadeUpBlur 2s cubic-bezier(0.4,0,0.2,1) forwards; }
+        @keyframes fadeUpBlur {
+            0% { opacity:1; transform:translateY(0); filter:blur(0px); }
+            100% { opacity:0; transform:translateY(-30px); filter:blur(10px); }
+        }
+        .worry-container { transition: background-color 3s ease, color 3s ease; }
+        .worry-dark { background-color: #1c1917; color: #d6d3d1; }
+        .dissolve-text { animation: dissolve 3s forwards; }
+        @keyframes dissolve {
+            0% { opacity:1; filter:blur(0px); letter-spacing:normal; transform:scale(1); }
+            50% { opacity:0.5; filter:blur(8px); letter-spacing:10px; transform:scale(1.1); }
+            100% { opacity:0; filter:blur(20px); letter-spacing:20px; transform:scale(1.2); }
+        }
+        .infinity-path {
+            stroke-dasharray: 1000; stroke-dashoffset: 1000;
+            animation: tracePath 6s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(120,156,138,0.8));
+        }
+        @keyframes tracePath { 0% { stroke-dashoffset:1000; } 100% { stroke-dashoffset:0; } }
+        input[type=range].accent-orange { accent-color: #f97316; }
+    </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-800 font-['Nunito',sans-serif]">
+
+    <div class="min-h-screen flex flex-col relative">
+
+        <!-- Top Navigation -->
+        <div id="global-header"></div>
+
+        <!-- Ambient Nature Player (Floating) -->
+        <div class="fixed bottom-6 right-6 z-50 bg-white p-4 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.08)] border border-[#F0EBE1] hidden md:flex flex-col gap-3 w-56">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-lg flex-shrink-0" id="ambient-icon">🎧</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold text-stone-400 uppercase tracking-wide">Ambient Audio</p>
+                    <select id="ambient-selector" class="text-sm font-bold text-stone-800 bg-transparent border-none focus:outline-none cursor-pointer w-full">
+                        <option value="none">Off</option>
+                        <option value="rain">🌧️ Gentle Rain</option>
+                        <option value="forest">🌲 Forest Walk</option>
+                        <option value="ocean">🌊 Ocean Waves</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-stone-300 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M18.364 5.636a9 9 0 010 12.728M15.536 8.464a5 5 0 010 7.072M12 11a1 1 0 100 2 1 1 0 000-2z"/></svg>
+                <input type="range" id="ambient-volume" min="0" max="1" step="0.05" value="0.7" class="flex-1 h-1.5 cursor-pointer" style="accent-color:#f97316">
+                <svg class="w-5 h-5 text-stone-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M18.364 5.636a9 9 0 010 12.728M15.536 8.464a5 5 0 010 7.072M12 6v12M9 9v6"/></svg>
+            </div>
+        </div>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto p-6 md:p-8">
+            <div class="container mx-auto max-w-7xl">
+                
+                <!-- Daily Micro-Wellness & Intro -->
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full border border-orange-100 shadow-sm mb-6 text-orange-600 font-bold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <span id="micro-tip">Micro-Wellness: Drop your shoulders and unclench your jaw.</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-stone-800 mb-4 font-['Lora',serif]">Immersive Mindfulness</h1>
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto">Deeply interactive tools to ground you right now, and curated knowledge for long-term growth.</p>
+                </div>
+
+                <!-- Deep Interactive Tools Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    
+                    <!-- 1. Immersive Breathing Tool -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#F0EBE1] flex flex-col items-center justify-center min-h-[400px] relative overflow-hidden">
+                        <div class="absolute top-6 left-6">
+                            <h3 class="text-xl font-bold text-stone-800 font-['Lora',serif]">4-7-8 Breathing</h3>
+                            <p class="text-sm text-stone-500">Audio-synced for instant calming</p>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span id="breathe-counter" class="text-sm font-bold text-stone-400 bg-stone-100 px-3 py-1 rounded-full">Cycle 0 of 4</span>
+                        </div>
+                        <div class="mt-10 flex flex-col items-center justify-center z-10">
+                            <div id="breathe-circle" class="w-32 h-32 rounded-full bg-[#D4CBB3] flex items-center justify-center breathe-circle mb-8 transition-shadow">
+                                <span id="breathe-text" class="text-white font-bold text-lg">Start</span>
+                            </div>
+                            <button id="breathe-btn" class="px-6 py-2 bg-stone-800 text-white font-bold rounded-full hover:bg-stone-700 transition">Begin Exercise</button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Infinity Trace Grounding Tool -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#F0EBE1] min-h-[400px] flex flex-col relative overflow-hidden items-center text-center justify-center cursor-crosshair">
+                        <div class="absolute top-6 left-6 text-left">
+                            <h3 class="text-xl font-bold text-stone-800 font-['Lora',serif]">Infinity Trace</h3>
+                            <p class="text-sm text-stone-500 mb-6">Trace the glowing path with your mouse or finger to ground yourself.</p>
+                        </div>
+                        <div class="w-full flex items-center justify-center mt-12 relative h-48 group">
+                            <svg viewBox="0 0 200 100" class="w-full max-w-[280px] h-auto overflow-visible">
+                                <path class="infinity-path" d="M50,50 C20,10 0,30 20,70 C40,110 80,70 100,50 C120,30 160,-10 180,30 C200,70 180,90 150,50 C120,10 80,30 100,50 C120,70 160,110 180,70 C200,30 180,10 150,50 C120,90 80,70 100,50 C80,30 40,-10 20,30 C0,70 20,90 50,50 Z" fill="none" stroke="#789c8a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M50,50 C20,10 0,30 20,70 C40,110 80,70 100,50 C120,30 160,-10 180,30 C200,70 180,90 150,50 C120,10 80,30 100,50 C120,70 160,110 180,70 C200,30 180,10 150,50 C120,90 80,70 100,50 C80,30 40,-10 20,30 C0,70 20,90 50,50 Z" fill="none" stroke="#D4CBB3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="opacity-30"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 3. Worry Release Cloud (Full Width) -->
+                <div class="mb-16">
+                    <div id="worry-container" class="worry-container worry-dark p-10 md:p-16 rounded-3xl shadow-inner flex flex-col items-center justify-center min-h-[400px] relative overflow-hidden">
+                        <div id="worry-input-area" class="w-full max-w-2xl text-center z-10">
+                            <h3 class="text-3xl font-bold mb-4 font-['Lora',serif]">The Worry Cloud</h3>
+                            <p class="text-stone-400 mb-8">What is heavy on your mind right now? Type it below, and let it dissolve.</p>
+                            <textarea id="worry-text" rows="3" class="w-full p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none text-center text-lg font-['Lora',serif]" placeholder="I'm feeling incredibly anxious about..."></textarea>
+                            <button id="worry-release-btn" class="mt-8 px-10 py-4 bg-white text-stone-900 font-bold text-lg rounded-full hover:bg-stone-200 transition-transform transform hover:scale-105">Let it go</button>
+                        </div>
+                        <div id="worry-success-area" class="hidden absolute inset-0 flex items-center justify-center flex-col z-20">
+                            <h3 class="text-4xl font-bold text-[#789c8a] font-['Lora',serif] mb-4">It's gone.</h3>
+                            <p class="text-stone-500 font-semibold mb-6">Your mind is a little lighter.</p>
+                            <button id="worry-reset-btn" class="px-6 py-2 border-2 border-stone-300 text-stone-500 font-bold rounded-full hover:bg-stone-100 transition">Another worry?</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource Library -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-6 font-['Lora',serif]">Knowledge Library</h2>
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+                        <input type="text" id="resource-search" placeholder="Search for stress, sleep, anxiety..." class="w-full md:w-96 p-4 bg-white border border-[#F0EBE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#789c8a] transition shadow-sm">
+                        <div id="topic-filters" class="flex gap-2 flex-wrap">
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-orange-500 text-white" data-topic="all">All</button>
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-stone-600 border border-[#F0EBE1] hover:bg-stone-50" data-topic="stress">Stress</button>
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-stone-600 border border-[#F0EBE1] hover:bg-stone-50" data-topic="anxiety">Anxiety</button>
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-stone-600 border border-[#F0EBE1] hover:bg-stone-50" data-topic="focus">Focus</button>
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-stone-600 border border-[#F0EBE1] hover:bg-stone-50" data-topic="sleep">Sleep</button>
+                            <button class="topic-filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-stone-600 border border-[#F0EBE1] hover:bg-stone-50" data-topic="breathe">Breathe</button>
+                        </div>
+                    </div>
+                    <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    <div id="no-results" class="hidden text-center py-16">
+                        <p class="text-xl text-stone-500">No resources found. Try a different search or filter.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Reading Modal -->
+    <div id="reading-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-stone-900/40 backdrop-blur-sm" id="reading-modal-backdrop"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl max-h-[90vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 scale-95 opacity-0" id="reading-modal-content">
+            <div class="relative h-64 w-full flex-shrink-0">
+                <img id="modal-img" src="" alt="Cover" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex flex-col justify-end p-8">
+                    <span id="modal-topic" class="text-xs font-bold text-orange-400 uppercase tracking-wide mb-2">Topic</span>
+                    <h2 id="modal-title" class="text-3xl md:text-4xl font-bold text-white font-['Lora',serif]">Article Title</h2>
+                </div>
+                <button id="modal-close-btn" class="absolute top-6 right-6 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-8 md:p-12 overflow-y-auto font-['Lora',serif] text-lg text-stone-700 leading-relaxed space-y-6" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/resources.js"></script>
+</body>
+</html>
+
