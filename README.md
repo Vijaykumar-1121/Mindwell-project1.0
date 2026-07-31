@@ -1,6 +1,7 @@
 # MindWell Platform
 
-**Live Demo:** [Add your Vercel Link here] | **Live Backend API:** [https://mindwell-project1-0.onrender.com/api](https://mindwell-project1-0.onrender.com/api)
+**Live Demo:** https://mindwell-project1-0.vercel.app/
+
 
 **MindWell** is a comprehensive, full-stack mental health support and wellness platform. It is engineered to bridge the gap between students seeking emotional support and professional counselors providing care. By combining traditional tracking tools (journaling, mood logging) with cutting-edge AI integrations (conversational chat and voice interfaces), MindWell provides an empathetic, 24/7 accessible environment for mental well-being.
 
