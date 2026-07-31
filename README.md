@@ -4,6 +4,12 @@ MindWell is a full-stack mental health support platform designed to connect stud
 
 This repository utilizes a dual-architecture design consisting of a static frontend and a Node.js REST API backend.
 
+## Key Features & Integrations
+
+- **Real-Time AI Chat Assistant**: A seamless, context-aware chatbot powered by the **Groq API** (Llama 3). The assistant is globally accessible via a floating chat widget and provides immediate mental health support, empathetic responses, and navigation assistance.
+- **AI Voice Integration**: Integrates cutting-edge voice functionality allowing students to have natural, spoken-word conversations with the AI. Uses **Deepgram API** or **ElevenLabs** for transcription and realistic voice synthesis to make therapy and guidance feel deeply human and accessible.
+- **Unified Dashboards**: Separate, secure environments for students to log their mood and journals, and for administrators/counselors to track analytics and manage platform resources.
+
 ## Architecture & Tech Stack
 
 ### Frontend
