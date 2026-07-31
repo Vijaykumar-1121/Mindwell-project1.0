@@ -1,54 +1,107 @@
-# MindWell
+# MindWell Platform
 
-MindWell is a comprehensive mental health support platform designed to connect students with professional counselors, track their emotional well-being, and provide instant access to mental health resources.
+MindWell is a full-stack mental health support platform designed to connect students with professional counselors. The application provides tools for emotional tracking, journaling, resource discovery, and appointment booking, supported by a conversational AI assistant.
 
-## Features
+This repository utilizes a dual-architecture design consisting of a static frontend and a Node.js REST API backend.
 
-### Student Portal
-* **Mood Tracking**: Log daily moods and view historical trends through interactive charts.
-* **Private Journal**: A secure space to reflect on thoughts and experiences.
-* **Appointment Booking**: Schedule and manage in-person or virtual sessions with licensed counselors.
-* **Resource Library**: Access curated articles, audio meditations, and reading materials.
-* **AI Assistant**: Conversational AI chatbot for instant support and guidance.
+## Architecture & Tech Stack
 
-### Admin Portal
-* **Analytics Dashboard**: Monitor platform usage, active counselors, student signups, and overall mood trends.
-* **User Management**: View, manage, and suspend student accounts as needed.
-* **Counselor Management**: Add, update, and manage counselor profiles and availability.
-* **Resource Management**: Upload and organize mental health resources accessible to students.
+### Frontend
+- **HTML5/CSS3/Vanilla JS**: Built without complex frameworks to ensure lightweight performance and ease of understanding.
+- **Dynamic Data Fetching**: Utilizes the standard Fetch API to communicate with the backend.
+- **Authentication**: JWT tokens stored in `localStorage` handle session persistence.
+- **Charting**: Uses Chart.js for rendering mood tracking analytics.
 
-## Screenshots
+### Backend
+- **Node.js & Express.js**: Handles API routing, middleware, and business logic.
+- **MongoDB & Mongoose**: NoSQL database for flexible document storage (Users, Appointments, Journals, Moods, etc.).
+- **Security**: Password hashing via bcrypt, stateless authentication via JWT.
+- **Integrations**: Groq API for the AI Assistant, Deepgram (optional audio processing).
 
-### Landing Page
-![Landing Page](screenshots/landing.png)
+## Repository Structure
 
-### Authentication
-![Login Page](screenshots/login.png)
+```text
+.
+├── backend/
+│   ├── src/
+│   │   ├── api/            # Express route definitions
+│   │   ├── config/         # Database configuration
+│   │   ├── controllers/    # Business logic for routes
+│   │   ├── middleware/     # Auth and error handling middleware
+│   │   ├── models/         # Mongoose database schemas
+│   │   └── utils/          # Helper functions (e.g., token generation)
+│   ├── server.js           # Express application entry point
+│   └── package.json        # Backend dependencies
+│
+└── frontend/
+    ├── admin/              # Admin dashboard HTML views
+    ├── student/            # Student dashboard HTML views
+    ├── assets/             # Images, icons, and audio files
+    ├── css/                # Stylesheets
+    ├── js/                 # Client-side JavaScript
+    │   └── config.js       # Global configuration (API Base URL)
+    └── index.html          # Application landing page
+```
 
-### Student Dashboard
-![Student Dashboard](screenshots/student-dashboard.png)
+## Setup & Installation
 
-### Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
+### Prerequisites
+- Node.js (v16+ recommended)
+- MongoDB account (Atlas) or local MongoDB instance
+- Git
 
-## Technology Stack
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Vijaykumar-1121/Mindwell-project1.0.git
+cd Mindwell-project1.0
+```
 
-* **Frontend**: HTML5, CSS3, Vanilla JavaScript
-* **Backend**: Node.js, Express.js
-* **Database**: MongoDB
-* **Authentication**: JSON Web Tokens (JWT)
-* **Integrations**: Groq API (AI Assistant)
+### 2. Backend Setup
+Navigate to the backend directory and install dependencies:
+```bash
+cd backend
+npm install
+```
 
-## Project Structure
+Create a `.env` file in the `backend/` directory with the following variables:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+ADMIN_CODE=your_admin_registration_code
+GROQ_API_KEY=your_groq_api_key
+```
 
-The project is structured into two main components:
+Start the backend development server:
+```bash
+npm run dev
+```
+The server will run on `http://localhost:5000`.
 
-1. `frontend/` - Contains all static HTML, CSS, and JavaScript files for the client-side application.
-2. `backend/` - Contains the Node.js Express server, MongoDB schemas, and API routes.
+### 3. Frontend Setup
+The frontend consists of static files. To run it locally, you can use any static file server (e.g., VS Code Live Server, or `npx serve`).
+```bash
+# Example using npx
+cd ../frontend
+npx serve .
+```
 
-## Deployment
+**Important**: Ensure the frontend is pointing to your backend. Check `frontend/js/config.js` and set the `API_BASE_URL` to `http://localhost:5000/api` during local development.
 
-The application is designed to be deployed across two separate services:
+## Deployment Guidelines
 
-* **Backend API**: Can be hosted on platforms like Render, Heroku, or Railway. Requires environment variables for database connections and API keys.
-* **Frontend Client**: Can be hosted on static hosting providers like Vercel or Netlify. The API base URL must be configured in `frontend/js/config.js` to point to the live backend service.
+Because of the separated architecture, the application should be deployed as two distinct services:
+
+1. **Backend**: Deploy the `backend/` folder to a Node.js hosting provider (e.g., Render, Heroku, DigitalOcean). Ensure all environment variables from your `.env` are configured on the hosting provider.
+2. **Frontend**: Deploy the `frontend/` folder to a static hosting provider (e.g., Vercel, Netlify). Before deploying, update `frontend/js/config.js` to point to the live backend URL.
+
+## Core API Endpoints
+
+- `POST /api/auth/register` - Register a new user or admin
+- `POST /api/auth/login` - Authenticate and receive JWT
+- `GET /api/users/profile` - Retrieve current user profile
+- `GET /api/journal` - Fetch user journal entries
+- `POST /api/appointments` - Book a new session
+- `POST /api/ai/chat` - Interact with the AI Assistant
+
+*Detailed endpoint parameters and responses can be found within the `backend/src/controllers` directory.*
