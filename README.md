@@ -6,7 +6,7 @@ This repository contains the complete source code for both the client-side front
 
 ---
 
-## 🎯 Project Overview & Core Philosophy
+## Project Overview & Core Philosophy
 
 The primary goal of MindWell is to make mental health resources highly accessible and less intimidating. The platform offers a dual-interface system:
 1. **Student Portal**: A safe space for users to log their feelings, write private journals, interact with AI for immediate guidance, and schedule sessions with human counselors.
@@ -14,19 +14,19 @@ The primary goal of MindWell is to make mental health resources highly accessibl
 
 ---
 
-## ✨ Comprehensive Feature List
+## Comprehensive Feature List
 
-### 🤖 AI Integrations (The Core Differentiator)
+### AI Integrations (The Core Differentiator)
 - **Real-Time AI Chat Assistant**: Powered by the **Groq API (Llama 3)**, this globally accessible floating chat widget provides immediate, context-aware mental health support, empathetic conversational responses, and navigation assistance across the app.
 - **AI Voice Integration**: Integrates **Deepgram** (for high-speed speech-to-text transcription) and **ElevenLabs** (for natural text-to-speech synthesis). This allows students to have natural, spoken-word conversations with the AI, making therapy and guidance feel deeply human and accessible for those in distress who prefer talking over typing.
 
-### 🎓 Student Features
-- **Daily Mood Tracker**: Students can log their mood daily on a 1-5 scale. This data is visualized using interactive line charts (via Chart.js) to help students identify emotional trends over weeks and months.
+### Features
+- **Daily Mood Tracker**: USers can log their mood daily on a 1-5 scale. This data is visualized using interactive line charts (via Chart.js) to help Users to identify emotional trends over weeks and months.
 - **Private Journaling**: A rich-text journal where students can write reflections. Journals are strictly private and timestamped, serving as a therapeutic outlet.
 - **Appointment Booking System**: A seamless interface to browse available licensed counselors, view their specializations, and book either in-person or virtual appointments.
 - **Resource Library**: A curated repository of mental health articles, audio meditations, and reading materials to help with anxiety, stress, and focus.
 
-### 🛡️ Admin & Management Features
+### Admin & Management Features
 - **Global Analytics Dashboard**: Visualizes critical platform metrics including total student count, active counselors, upcoming appointments, and aggregated mood trends across the platform.
 - **User Management System**: Complete CRUD capabilities for managing student accounts, including the ability to temporarily suspend or unsuspend users who violate community guidelines.
 - **Counselor Directory Management**: Admins can add new counselors to the platform, update their specialties, and remove inactive staff.
@@ -55,7 +55,7 @@ MindWell utilizes a **decoupled architecture**, meaning the frontend and backend
 
 ---
 
-## 📂 Repository Structure & Code Navigation
+##  Repository Structure & Code Navigation
 
 ```text
 .
@@ -84,7 +84,7 @@ MindWell utilizes a **decoupled architecture**, meaning the frontend and backend
 
 ---
 
-## 🚀 Setup & Installation Guide
+##  Setup & Installation Guide
 
 For developers looking to run, modify, or contribute to MindWell, follow these steps to run the application locally.
 
@@ -163,7 +163,7 @@ Because of the decoupled nature of the codebase, the application must be deploye
 
 ---
 
-## 🔌 API Documentation Overview
+##  API Documentation Overview
 
 The backend exposes a RESTful API. Below is a high-level overview of the core endpoints. *All endpoints (except auth) require a Bearer JWT token in the Authorization header.*
 
@@ -182,4 +182,4 @@ The backend exposes a RESTful API. Below is a high-level overview of the core en
 **AI Integration**
 - `POST /api/ai/chat` - Sends a conversation payload to the Groq API and streams back the Llama 3 response.
 
-*For detailed schema definitions and specific request/response bodies, review the files in `backend/src/models/` and `backend/src/controllers/`.*
+Thank you
